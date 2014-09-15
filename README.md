@@ -7,6 +7,6 @@ In this repo:
 
 3. A Node.js app for deploying the ML algorithm into production
 
-Here's a pic of what the final app looks like:
+Here's an architecture overview for how the final app works:
 
 ![setup](/public/img/setup.png)
