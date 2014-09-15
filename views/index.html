@@ -1,0 +1,179 @@
+<div class="container">
+    <h2>Estimating the price of a house in Boston (circa 1970)</h2>
+    <p>The data for this model is from the UC Irvine Machine Learning Repository.  It can be found <a href="http://archive.ics.uci.edu/ml/datasets/Housing" target="_blank">here</a></p>
+        <div class="col-sm-6">
+            <h3>Inputs:</h3>
+                <form class="form-horizontal" role="form" action="/predict" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="CRIME">CRIME:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="CRIME" min="0" max="100" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="ZONE">ZONE:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="ZONE" min="0" max="100" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="NONRETAILBIZ">NONRETAIL:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="NONRETAILBIZ" min="0" max="2" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="CRIVER">CRIVER:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="CRIVER" min="0" max="2" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="ROOMS">ROOMS:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="ROOMS" min="0" max="20" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="AGE">AGE:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="AGE" min="0" max="100" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="EMPLOYDIST">EMPLOYDIST:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="EMPLOYDIST" min="0" max="50" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="RADHIGHWAYS">RADHIGHWAYS:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="RADHIGHWAYS" min="0" max="50" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="TAXRATE">TAXRATE:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="TAXRATE" min="0" max="1000" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="PTRATIO">PTRATIO:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="PTRATIO" min="0" max="50" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="LSTAT">LSTAT:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" name="LSTAT" min="0" max="50" step=".1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-success"><h3>Predict the Price</h3></button>
+                            </div>
+                        </div>
+            </form>
+        </div>
+
+<div class="col-md-6">
+    <div class="btn-group">
+        <a id="gbtn" class="btn btn-success">See Summary Statistics</a>
+            <table id="show-table" class="table table-striped hidden" description="hidden">
+                <tr>
+                    <td><h4>Variable</h4></td>
+                    <td><h4>Description</h4></td>
+                    <td><h4>Min</h4></td>
+                    <td><h4>Mean</h4></td>
+                    <td><h4>Max</h4></td>
+                </tr>
+                <tr>
+                    <td>CRIME</td> 
+                    <td>Per capita crime rate by town </td>
+                    <td>0.006</td>
+                    <td>3.61</td>  
+                    <td>88.97</td>
+                </tr>
+                <tr>
+                    <td>ZONE</td> 
+                    <td>Proportion of residential land zoned for lots over 25,000 sq.ft. </td>
+                    <td>0.46</td>
+                    <td>11.13</td>
+                    <td>27.74</td>
+                </tr>
+                <tr>
+                    <td>NONRETAIL</td> 
+                    <td>Proportion of non-retail business acres per town </td>
+                    <td>0</td>
+                    <td>0.069</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>CRIVER</td> 
+                    <td>Charles River dummy variable (1 if tract bounds river; 0 otherwise)</td>
+                    <td>0.38</td>
+                    <td>0.55</td>
+                    <td>0.87</td>
+                </tr>
+                <tr>
+                    <td>ROOMS</td> 
+                    <td>Average number of rooms per dwelling</td>                
+                    <td>3.51</td>
+                    <td>6.28</td>
+                    <td>8.78</td>
+                </tr>
+                <tr>
+                    <td>AGE</td> 
+                    <td>Proportion of owner-occupied units built prior to 1940 </td>
+                    <td>2.9</td>
+                    <td>68.57</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>EMPLOYDIST</td> 
+                    <td>Weighted distances to five Boston employment centers </td>
+                    <td>1.12</td>
+                    <td>3.79</td>
+                    <td>12.12</td>
+                </tr>
+                <tr>
+                    <td>RADHIGHWAYS</td> 
+                    <td>Index of accessibility to radial highways </td>
+                    <td>1</td>
+                    <td>9.54</td>
+                    <td>24</td>
+                </tr>
+                <tr>
+                    <td>TAXRATE</td> 
+                    <td>Full-value property-tax rate per $10,000 </td>
+                    <td>187</td>
+                    <td>408.23</td>
+                    <td>711</td>
+                </tr>
+                <tr>
+                    <td>PTRATIO</td> 
+                    <td>Pupil-teacher ratio by town </td>
+                    <td>12.60</td>
+                    <td>18.45</td>
+                    <td>22.00</td>
+                </tr>
+                <tr>
+                    <td>LSTAT</td> 
+                    <td>% lower status of the population </td>
+                    <td>1.730</td>
+                    <td>12.65</td>
+                    <td>37.97</td>
+                </tr>
+                <tr>
+                    <td>PRICE</td> 
+                    <td>Median value of owner-occupied homes in $1000's</td>
+                    <td>5.00</td>
+                    <td>22.5</td>
+                    <td>50.0</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

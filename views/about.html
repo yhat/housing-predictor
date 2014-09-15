@@ -1,0 +1,132 @@
+<div class="container">
+    <div class="row">
+        <h2><u>How it works</u></h2>
+            <h3>Goal of the application:</h3>
+                <h4>Use a machine learning algorithm to give users price predictions for houses, given an inputed group of characteristics</h4>
+            <h3>To do this we will:</h3>
+            <ol>
+                <li>Deploy an algorithm to predict housing prices</li>
+                <li>Create a form to allow users to input housing characteristics</li>
+                <li>Run user inputs through the price prediction algorithm</li>
+                <li>Return a prediction for the estimated value of the specified house</li>
+            </ol>
+
+            <h4>Our server/webpage architecture will contain four main parts</h4>
+                <ol>
+                    <li>Machine Learning Server</li>
+                    <li>A Machine Learning Algorithm (deployed onto the ML server)</li>
+                    <li>Web App Server</li>
+                    <li>User-facing web page</li>
+                </ol>
+            <h4>This looks something like below:</h4>
+    </div>
+
+    <div class="row">
+        <!-- <div class="col-md-3 col-md-offset-6"></div> -->
+            <img src="/img/setup.png" width="100%" >
+    </div>
+
+    <div class="row">
+
+
+    </div>
+
+
+    <div class="row">
+        <h3>Creating and Deploying the Algorithm</h3>
+            <p>
+                Writing ML algorithms can be quite complex.  There are tons of resources available for teaching how to build and train ML algorithms so we'll just focus on deploying them into production.
+            </p>
+            <p>
+                We'll deploy our machine learning algorithm to Yhat ScienceOps.  ScienceOps is a server that will host our algorithm and allow us to send POST requests and receive predictions from our algorithm.
+            </p>
+            <p>
+                The code below sends the algorithm to the ScienceOps server and creates a REST API endpoint, allowing our web server to access the model via a POST request.
+            </p>
+    </div>
+
+    <div class="row">
+        <pre>from yhat import Yhat, YhatModel, preprocess, df_to_json
+
+            class HousePred(YhatModel):
+               @preprocess(in_type=pd.DataFrame, out_type=pd.DataFrame)
+               def execute(self, data):
+                   result = clf.predict(data[features])
+                   df = pd.DataFrame(data={'predicted_price': result})
+                   return df
+
+            yh = Yhat("colin[at]yhathq.com", "API_KEY", "http://cloud.yhathq.com/")
+            yh.deploy  ("HouseValuePredictor", HousePred, globals())
+        </pre>
+        <h3>Our algorithm is now deployed. Step one complete!</h3> 
+    </div>
+
+    <div class="row">
+        <h3>Building the web server</h3>
+            <p>
+                We've chosen to build the webapp in Node.js.  From our web server, we'll be doing two things:
+            </p>
+                <ol>
+                    <li>Sending the user web pages</li>
+                    <li>Capturing their inputs and sending the data to our ML server</li>
+                </ol>
+            <h4>Server side</h4>
+                <p>To render the page to capture the form data we'll run the code below on the web server:</p>
+                    <pre>app.get('/', function(req, res) {
+                        res.render('index');
+                    }
+                    );</pre>
+
+                <p>We'll also need to permission the web server to access the ML algorithm:</p>
+                    <pre>yh = yhat.init("colin[at]yhathq.com","API_KEY","http://cloud.yhathq.com/");</pre>
+
+                <p><strong>Now for the exciting part: getting our predictions from the server!</strong></p>
+
+                <p>After the user fills out the form, we'll need to capture their inputs and then send it to the ML algorithm.  We do this by pointing our app at the REST endpoint of our model.</p>
+
+                <p>The code below is kinda long so lets break it down into steps:</p>
+                    <ol>
+                        <li>Create a function that runs when "Predict the Price" is clicked<code>app.post('/predict')</code>
+                        <li>Capture the form inputs: <code>data = {....}</code></li>
+                        <li>Send the <code>data</code> to the ML server: <code>yh.predict(...</code>
+                        <li>Take the server response <code>rsp</code> and format it into currency: <code>var formatted_price = ...</code></li>
+                        <li>Render the 'response' page and insert the formated price into the page: <code>res.render('response'...</code></li>
+
+    <pre>app.post('/predict',function(req,res){
+    data= {
+        "CRIME": [parseFloat(req.body.CRIME)]
+        ,"ZONE": [parseFloat(req.body.ZONE)]
+        ,"NONRETAILBIZ": [parseFloat(req.body.NONRETAILBIZ)]
+        ,"CRIVER": [parseFloat(req.body.CRIVER)]
+        ,"NITOX": [.55]
+        ,"ROOMS": [parseFloat(req.body.ROOMS)]
+        ,"AGE": [parseFloat(req.body.AGE)]
+        ,"EMPLOYDIST": [parseFloat(req.body.EMPLOYDIST)]
+        ,"RADHIGHWAYS": [parseFloat(req.body.RADHIGHWAYS)]
+        ,"TAXRATE": [parseFloat(req.body.TAXRATE)]
+        ,"PTRATIO": [parseFloat(req.body.PTRATIO)]
+        ,"RACE": [350]
+        ,"LSTAT": [parseFloat(req.body.LSTAT)]
+    };
+
+    yh.predict("HouseValuePredictor", data, function(err, rsp) {
+       
+        if (err) {
+            console.log("Error connecting to server: " + err);
+        } else {
+            console.log(rsp.result);
+        }
+        
+        var formatted_price = accounting.formatMoney(rsp.result.predicted_price*1000);
+
+        res.render('response', {formatted_price: formatted_price})
+        });
+    });
+});</pre>
+    </div>
+
+    <div class="row">
+        <h3>Schematic</h3>
+        <img src="/img/schema.png" width="100%">
+    </div>
+</div>
