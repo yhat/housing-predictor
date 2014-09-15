@@ -1,8 +1,12 @@
 <div class="container">
     <h2>Estimating the price of a house in Boston (circa 1970)</h2>
-    <p>The data for this model is from the UC Irvine Machine Learning Repository.  It can be found <a href="http://archive.ics.uci.edu/ml/datasets/Housing" target="_blank">here</a></p>
+        <p>The data for this model is from the UC Irvine Machine Learning Repository.  It can be found <a href="http://archive.ics.uci.edu/ml/datasets/Housing" target="_blank">here</a></p>
+        <strong>Note that inputs are randomly generated based on the Min and Max of the summary data</strong>
+            <h4><a href=http://blog.yhathq.com/ target="_blank">To learn more about this app, checkout the Yhat blog</a></h4>
+
         <div class="col-sm-6">
             <h3>Inputs:</h3>
+
                 <form class="form-horizontal" role="form" action="/predict" method="post">
                         {{#record}}
                         <div class="form-group">
