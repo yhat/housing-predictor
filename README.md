@@ -11,4 +11,4 @@ In this repo:
 
 Here's a pic of what the final app looks like:
 
-[app](./public/img/setup.png)
+![image](https://github.com/yhat/housing-predictor/blob/master/public/img/setup.png
