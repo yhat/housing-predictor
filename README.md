@@ -9,4 +9,4 @@ In this repo:
 
 Here's a pic of what the final app looks like:
 
-![setup](/public/img/setup.png
+![setup](/public/img/setup.png)
