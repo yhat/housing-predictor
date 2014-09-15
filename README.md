@@ -1,5 +1,14 @@
+## Housing Price Predictor
 
-In this repo:
+#### This is a Node.js app that uses a Python machine learning script to create predictions for house values
+
+### Deploy the app -> Input values -> get predictions for house values
+
+To deploy the app run:
+
+```$ nodemon app.js```
+
+**In this repo:**
 
 1. housing.py -> a machine learning algorithm for predicting housing prices
 
