@@ -4,70 +4,71 @@
         <div class="col-sm-6">
             <h3>Inputs:</h3>
                 <form class="form-horizontal" role="form" action="/predict" method="post">
+                        {{#record}}
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="CRIME">CRIME:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="CRIME" min="0" max="100" step=".1" value="1">
+                                <input class="form-control" type="number" name="CRIME" min="0" max="100" step=".1" value="{{CRIME}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="ZONE">ZONE:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="ZONE" min="0" max="100" step=".1" value="1">
+                                <input class="form-control" type="number" name="ZONE" min="0" max="100" step=".1" value="{{ZONE}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="NONRETAILBIZ">NONRETAIL:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="NONRETAILBIZ" min="0" max="2" step=".1" value="1">
+                                <input class="form-control" type="number" name="NONRETAILBIZ" min="0" max="2" step=".1" value="{{NONRETAILBIZ}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="CRIVER">CRIVER:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="CRIVER" min="0" max="2" step=".1" value="1">
+                                <input class="form-control" type="number" name="CRIVER" min="0" max="2" step=".1" value="{{CRIVER}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="ROOMS">ROOMS:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="ROOMS" min="0" max="20" step=".1" value="1">
+                                <input class="form-control" type="number" name="ROOMS" min="0" max="20" step=".1" value="{{ROOMS}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="AGE">AGE:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="AGE" min="0" max="100" step=".1" value="1">
+                                <input class="form-control" type="number" name="AGE" min="0" max="100" step=".1" value="{{AGE}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="EMPLOYDIST">EMPLOYDIST:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="EMPLOYDIST" min="0" max="50" step=".1" value="1">
+                                <input class="form-control" type="number" name="EMPLOYDIST" min="0" max="50" step=".1" value="{{EMPLOYDIST}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="RADHIGHWAYS">RADHIGHWAYS:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="RADHIGHWAYS" min="0" max="50" step=".1" value="1">
+                                <input class="form-control" type="number" name="RADHIGHWAYS" min="0" max="50" step=".1" value="{{RADHIGHWAYS}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="TAXRATE">TAXRATE:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="TAXRATE" min="0" max="1000" step=".1" value="1">
+                                <input class="form-control" type="number" name="TAXRATE" min="0" max="1000" step=".1" value="{{TAXRATE}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="PTRATIO">PTRATIO:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="PTRATIO" min="0" max="50" step=".1" value="1">
+                                <input class="form-control" type="number" name="PTRATIO" min="0" max="50" step=".1" value="{{PTRATIO}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="LSTAT">LSTAT:</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" name="LSTAT" min="0" max="50" step=".1" value="1">
+                                <input class="form-control" type="number" name="LSTAT" min="0" max="50" step=".1" value="{{LSTAT}}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -75,6 +76,7 @@
                               <button type="submit" class="btn btn-success"><h3>Predict the Price</h3></button>
                             </div>
                         </div>
+                        {{/record}}
             </form>
         </div>
 

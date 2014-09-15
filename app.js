@@ -24,6 +24,31 @@ var YHAT_USERNAME = process.env.YHAT_USERNAME,
     YHAT_APIKEY = process.env.YHAT_APIKEY;
 
 
+// helper function
+function randBetween(low, high) {
+    return (Math.random() * high + low).toFixed(1);
+}
+
+function randomRecord() {
+    return {
+        'CRIME': randBetween(0.006, 88.97),
+        'ZONE': randBetween(0.46, 27.74),
+        'NONRETAILBIZ': randBetween(0, 1),
+        'CRIVER': randBetween(0.38, 0.87),
+        'ROOMS': randBetween(3.51, 8.78),
+        'AGE': randBetween(2.9, 100),
+        'EMPLOYDIST': randBetween(1.12, 12.12),
+        'RADHIGHWAYS': randBetween(1, 24),
+        'TAXRATE': randBetween(187, 711),
+        'PTRATIO': randBetween(12.6, 22),
+        'LSTAT': randBetween(1.73, 37.97),
+        'PRICE': randBetween(5, 50)
+    }
+}
+
+console.log(randomRecord());
+
+
 /*
  * App Configurations
  */
@@ -65,7 +90,7 @@ app.use(bodyParser.json());
 
 // index
 app.get('/', function(req, res) {
-    res.render('index');
+    res.render('index', { title: "Housing Predictor", record: randomRecord() });
 });
 
 // Input your Username/APIKEY
@@ -100,13 +125,13 @@ app.post('/predict',function(req,res){
         
         var formatted_price = accounting.formatMoney(rsp.result.predicted_price*1000);
 
-        res.render('response', {formatted_price: formatted_price , data_map: JSON.stringify(data,null,2), data_resp: JSON.stringify(rsp,null,2)
+        res.render('response', {title: "Predicted", formatted_price: formatted_price , data_map: JSON.stringify(data,null,2), data_resp: JSON.stringify(rsp,null,2)
         });
     });
 });
 
 app.get('/about', function(req, res) {
-    res.render('about');
+    res.render('about', { title: "How It Works" });
 });
 
 // robots.txt
@@ -119,7 +144,7 @@ app.get('/robots.txt', function(req, res) {
 
 // 404
 app.get('*', function(req, res) {
-    res.render('404');
+    res.render('404', { title: "404" });
 });
 
 

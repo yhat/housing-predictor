@@ -46,18 +46,18 @@
     </div>
 
     <div class="row">
-        <pre>from yhat import Yhat, YhatModel, preprocess, df_to_json
+        <pre>
+from yhat import Yhat, YhatModel, preprocess, df_to_json
 
-            class HousePred(YhatModel):
-               @preprocess(in_type=pd.DataFrame, out_type=pd.DataFrame)
-               def execute(self, data):
-                   result = clf.predict(data[features])
-                   df = pd.DataFrame(data={'predicted_price': result})
-                   return df
+class HousePred(YhatModel):
+   @preprocess(in_type=pd.DataFrame, out_type=pd.DataFrame)
+   def execute(self, data):
+       result = clf.predict(data[features])
+       df = pd.DataFrame(data={'predicted_price': result})
+       return df
 
-            yh = Yhat("colin[at]yhathq.com", "API_KEY", "http://cloud.yhathq.com/")
-            yh.deploy  ("HouseValuePredictor", HousePred, globals())
-        </pre>
+yh = Yhat("colin[at]yhathq.com", "API_KEY", "http://cloud.yhathq.com/")
+yh.deploy("HouseValuePredictor", HousePred, globals())</pre>
         <h3>Our algorithm is now deployed. Step one complete!</h3> 
     </div>
 
@@ -73,9 +73,8 @@
             <h4>Server side</h4>
                 <p>To render the page to capture the form data we'll run the code below on the web server:</p>
                     <pre>app.get('/', function(req, res) {
-                        res.render('index');
-                    }
-                    );</pre>
+    res.render('index');
+});</pre>
 
                 <p>We'll also need to permission the web server to access the ML algorithm:</p>
                     <pre>yh = yhat.init("colin[at]yhathq.com","API_KEY","http://cloud.yhathq.com/");</pre>
