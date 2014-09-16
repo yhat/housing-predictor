@@ -6,10 +6,14 @@
 
 ### Deploy the app -> Input values -> get predictions for house values
 
+To deply your model:
+
+1. Update `housing.py` with your `YHAT_USERNAME` and `YHAT_APIKEY` (you can signup for a Yhat account here: https://yhathq.com/signup)
+2. Run `$ python housing.py` to deploy your machine learning model
+
 To deploy the app run:
 
-```
-# you can signup for a Yhat account here: https://yhathq.com/signup
+```bash
 $ export YHAT_USERNAME="kermit@themuppets.org"
 $ export YHAT_APIKEY="ABCD1234"
 $ nodemon app.js
