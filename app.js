@@ -11,7 +11,8 @@ var bodyParser = require('body-parser'),
     morgan = require('morgan'),
     path = require('path'),
     yhat = require('yhat'),
-    accounting = require('accounting');
+    accounting = require('accounting'),
+    sample_data = require('./sample-data');
 
 /*
  * Initiate Express
@@ -26,24 +27,12 @@ var YHAT_USERNAME = process.env.YHAT_USERNAME,
 
 // helper function
 function randBetween(low, high) {
-    return (Math.random() * high + low).toFixed(1);
+    return (Math.random() * high + low).toFixed(0);
 }
 
 function randomRecord() {
-    return {
-        'CRIME': randBetween(0.006, 88.97),
-        'ZONE': randBetween(0.46, 27.74),
-        'NONRETAILBIZ': randBetween(0, 1),
-        'CRIVER': randBetween(0.38, 0.87),
-        'ROOMS': randBetween(3.51, 8.78),
-        'AGE': randBetween(2.9, 100),
-        'EMPLOYDIST': randBetween(1.12, 12.12),
-        'RADHIGHWAYS': randBetween(1, 24),
-        'TAXRATE': randBetween(187, 711),
-        'PTRATIO': randBetween(12.6, 22),
-        'LSTAT': randBetween(1.73, 37.97),
-        'PRICE': randBetween(5, 50)
-    }
+    var i = randBetween(0, sample_data.length - 1);
+    return sample_data[i];
 }
 
 console.log(randomRecord());
@@ -123,11 +112,14 @@ app.post('/predict',function(req,res){
             console.log(rsp.result);
         }
         
+        var priceToday = rsp.result.predicted_price*1000 / 0.21
         var formatted_price = accounting.formatMoney(rsp.result.predicted_price*1000);
+        var formatted_today_price = accounting.formatMoney(priceToday);
 
         res.render('response', {
             title: "Predicted",
-            formatted_price: formatted_price ,
+            formatted_price: formatted_price,
+            priceToday: formatted_today_price,
             data_map: JSON.stringify(data, null ,2),
             data_resp: JSON.stringify(rsp, null, 2)
         });
