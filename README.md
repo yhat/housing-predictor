@@ -8,7 +8,12 @@
 
 To deploy the app run:
 
-```$ nodemon app.js```
+```
+# you can signup for a Yhat account here: https://yhathq.com/signup
+$ export YHAT_USERNAME="kermit@themuppets.org"
+$ export YHAT_APIKEY="ABCD1234"
+$ nodemon app.js
+```
 
 **In this repo:**
 
