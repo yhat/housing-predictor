@@ -21,7 +21,7 @@ Or click this button :)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-**In this repo:**
+### In this repo:
 
 1. housing.py -> a machine learning algorithm for predicting housing prices
 
