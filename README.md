@@ -1,5 +1,7 @@
 ## Housing Price Predictor
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 #### This is a Node.js app that uses a Python machine learning script to create predictions for house values
 
 ### Deploy the app -> Input values -> get predictions for house values

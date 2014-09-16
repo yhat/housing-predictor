@@ -1,0 +1,22 @@
+{
+  "name": "Housing Predictor",
+  "description": "Node.js app that uses a Python machine learning script to create predictions for house values",
+  "keywords": [
+    "machine learning",
+    "python",
+    "nodejs",
+    "housing",
+    "yhat"
+  ],
+  "addons": [],
+  "env": {
+    "YHAT_USERNAME": {
+      "description": "Your Yhat username (https://yhathq.com/signup)",
+      "value": "kermit@themuppets.com"
+    },
+    "YHAT_APIKEY": {
+      "description": "Your Yhat apikey (https://cloud.yhathq.com/)",
+      "value": "ABCD1234"
+    }
+  }
+}
