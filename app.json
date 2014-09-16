@@ -15,7 +15,7 @@
       "value": "kermit@themuppets.com"
     },
     "YHAT_APIKEY": {
-      "description": "Your Yhat apikey (https://cloud.yhathq.com/)",
+      "description": "Your Yhat apikey (http://cloud.yhathq.com/)",
       "value": "ABCD1234"
     }
   }
