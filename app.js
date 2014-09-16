@@ -99,7 +99,7 @@ yh = yhat.init(YHAT_USERNAME,
                "http://cloud.yhathq.com/");
 
 app.post('/predict',function(req,res){
-    data= {
+    var data = {
         "CRIME": [parseFloat(req.body.CRIME)]
         ,"ZONE": [parseFloat(req.body.ZONE)]
         ,"NONRETAILBIZ": [parseFloat(req.body.NONRETAILBIZ)]
@@ -125,7 +125,11 @@ app.post('/predict',function(req,res){
         
         var formatted_price = accounting.formatMoney(rsp.result.predicted_price*1000);
 
-        res.render('response', {title: "Predicted", formatted_price: formatted_price , data_map: JSON.stringify(data,null,2), data_resp: JSON.stringify(rsp,null,2)
+        res.render('response', {
+            title: "Predicted",
+            formatted_price: formatted_price ,
+            data_map: JSON.stringify(data, null ,2),
+            data_resp: JSON.stringify(rsp, null, 2)
         });
     });
 });
