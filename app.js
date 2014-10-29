@@ -104,7 +104,7 @@ app.post('/predict',function(req,res){
         ,"LSTAT": [parseFloat(req.body.LSTAT)]
     };
 
-    yh.predict("HouseValuePredictor", data, function(err, rsp) {
+    yh.predict("HouseValuePredicton", data, function(err, rsp) {
        
         if (err) {
             console.log("Error connecting to server: " + err);

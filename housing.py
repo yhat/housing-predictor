@@ -6,6 +6,7 @@ from sklearn.metrics import r2_score
 
 df = pd.read_csv('housing_data.csv', sep=',')
 
+
 features = df.columns[df.columns != "MEDVALUE"]
 
 target = "MEDVALUE"
@@ -29,10 +30,9 @@ class HousePred(YhatModel):
        return df
 
 yh = Yhat(
-    "YOUR_USERNAME",
-    "API_KEY",
-    "http://cloud.yhathq.com/"
-)
+    "colin@yhathq.com",
+    "bc2dda6e5a77d6fe879da4ccaa56b37f",
+    "http://cloud.yhathq.com/")
 
 yh.deploy("HouseValuePredictor", HousePred, globals())
 
