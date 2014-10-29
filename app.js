@@ -108,6 +108,7 @@ app.post('/predict',function(req,res){
        
         if (err) {
             console.log("Error connecting to server: " + err);
+            return res.render('index', { title: "Housing Predictor", record: randomRecord() });
         } else {
             console.log(rsp.result);
         }

@@ -32,3 +32,4 @@ Or click this button :)
 Here's an architecture overview for how the final app works:
 
 ![setup](/public/img/setup.png)
+
