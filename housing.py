@@ -30,8 +30,8 @@ class HousePred(YhatModel):
        return df
 
 yh = Yhat(
-    "colin@yhathq.com",
-    "bc2dda6e5a77d6fe879da4ccaa56b37f",
+    "USERNAME",
+    "APIKEY",
     "http://cloud.yhathq.com/")
 
 yh.deploy("HouseValuePredictor", HousePred, globals())
